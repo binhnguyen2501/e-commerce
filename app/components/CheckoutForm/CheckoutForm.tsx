@@ -16,7 +16,7 @@ export default function CheckoutForm({
 }: {
   clientSecret: string;
 }) {
-  const stripe = useStripe();
+  const stripe: any = useStripe();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 

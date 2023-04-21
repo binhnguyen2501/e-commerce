@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import useCart, { useThemeStore } from "@/store/store";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
@@ -53,7 +53,7 @@ export default function Checkout() {
       });
   }, []);
 
-  const options: StripeElementsOptions = {
+  const options = {
     clientSecret,
     appearance: {
       theme: stripeTheme,
@@ -91,7 +91,7 @@ export default function Checkout() {
       )}
       {clientSecret && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <Elements options={options} stripe={stripePromise}>
+          <Elements options={options as any} stripe={stripePromise}>
             <CheckoutForm clientSecret={clientSecret} />
           </Elements>
         </motion.div>
